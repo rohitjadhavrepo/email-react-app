@@ -48,15 +48,22 @@ ${env.BUILD_URL}input
               
                     set -e
 
+                    # Load NVM manually
+                    export NVM_DIR="$HOME/.nvm"
+                    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+                    # Use Node 18
+                    nvm use 18                    
+
                     echo "Pulling latest code..."
                     git reset --hard
                     git pull origin $BRANCH
 
                     echo "Installing dependencies..."
-                    /usr/bin/npm install
+                    npm install
 
                     echo "Building React app..."
-                    /usr/bin/npm run build
+                    npm run build
 
                     echo "Deploying to Nginx..."
                     sudo mkdir -p $DEPLOY_PATH
