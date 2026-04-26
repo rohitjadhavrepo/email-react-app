@@ -4,7 +4,7 @@ pipeline {
     environment {
         SERVER_IP = '192.168.1.186'
         APP_PATH = '/var/www/email-react-app'   // your project path on server
-        DEPLOY_PATH = '/var/www/html'           // nginx root
+        DEPLOY_PATH = '/var/www/email-react-app-build'           // nginx root
         BRANCH = 'main'
     }
 
@@ -41,6 +41,8 @@ ${env.BUILD_URL}input
                     echo "Connecting to server..."
 
                     ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SERVER_IP << EOF
+                      
+                    export PATH=/usr/bin:/usr/local/bin:$PATH
 
                     cd $APP_PATH
               
@@ -57,6 +59,7 @@ ${env.BUILD_URL}input
                     npm run build
 
                     echo "Deploying to Nginx..."
+                    sudo mkdir -p $DEPLOY_PATH
                     sudo rm -rf $DEPLOY_PATH/*
                     sudo cp -r build/* $DEPLOY_PATH/
 
