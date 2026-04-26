@@ -53,10 +53,10 @@ ${env.BUILD_URL}input
                     git pull origin $BRANCH
 
                     echo "Installing dependencies..."
-                    npm install
+                    /usr/bin/npm install
 
                     echo "Building React app..."
-                    npm run build
+                    /usr/bin/npm run build
 
                     echo "Deploying to Nginx..."
                     sudo mkdir -p $DEPLOY_PATH
