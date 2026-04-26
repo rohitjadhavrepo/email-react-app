@@ -20,7 +20,9 @@ ${env.BUILD_URL}input
         }
         stage('Wait for Approval') {
             steps {
-                input message: "Approve deployment?", ok: "Deploy"
+                timeout(time: 1, unit: 'MINUTES') {
+                    input message: "Approve deployment?", ok: "Deploy"
+                }
             }
         }
         stage('Deploy to Server') {
