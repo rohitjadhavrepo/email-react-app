@@ -40,7 +40,9 @@ ${env.BUILD_URL}input
                     sh '''
                     echo "Connecting to server..."
 
-                    ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SERVER_IP << EOF
+                    ssh -i $SSH_KEY -o StrictHostKeyChecking=no $SSH_USER@$SERVER_IP << 'EOF'
+                    
+                    set -e
 
                     cd $APP_PATH
 
