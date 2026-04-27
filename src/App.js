@@ -8,7 +8,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>
          * React Based Application
-           Email Approval *
+           Email Approval V2*
         </p>
         <a
           className="App-link"
